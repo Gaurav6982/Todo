@@ -30,6 +30,10 @@ li p{
   /* margin-right: 20px; */
   width: 100px;
 }
+.check{
+  text-decoration: line-through;
+  opacity: 0.5;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

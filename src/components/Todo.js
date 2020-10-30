@@ -6,12 +6,18 @@ const Todo=({todos,todo,setTodosHandler})=>{
     }
     const StatusHandler=(e)=>{
         e.preventDefault();
-        console.log(e.target);
+        setTodosHandler(todos.map(el=>{
+            if(el.id===todo.id)
+            {
+                el.completed=!todo.completed;
+            }
+            return el;
+            }));
     }
     return(
         <div>
             <li>
-                <p>{todo.text}</p>
+                <p  className={`${todo.completed?"check":""}`} >{todo.text}</p>
                 <button className="btn" onClick={StatusHandler}><i className="fas fa-check"></i></button>
                 <button className="btn" onClick={DeleteHandler}><i className="fas fa-trash"></i></button>
             </li>
