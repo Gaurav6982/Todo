@@ -1,6 +1,7 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 
-const Form = ({inputText,setInputTextHandler,todos,setTodosHandler})=>{
+const Form = ({inputText,setInputTextHandler,todos,filter,setTodosHandler,setFilter,setFilteredTodo})=>{
+   
     const handleChange=(e)=>{
         // console.log(e.target.value);
         e.preventDefault();
@@ -15,14 +16,18 @@ const Form = ({inputText,setInputTextHandler,todos,setTodosHandler})=>{
         setInputTextHandler("");
         // console.log();
     }
+    const handleFilter=(e)=>{
+        setFilter(e.target.value);
+    }
+    
     return (
         <form>
             <input onChange={handleChange} type="text"  className="form-control" value={inputText}/>
             <button className="btn btn-primary" onClick={handleSubmit}> <i className="fas fa-plus"></i></button>
-            <select name="" id="" className="form-control">
-                <option value="">All</option>
-                <option value="">Completed</option>
-                <option value="">Not Completed</option>
+            <select onChange={handleFilter} className="form-control">
+                <option value="all">All</option>
+                <option value="completed">Completed</option>
+                <option value="uncompleted">Not Completed</option>
             </select>
         </form>
     );
