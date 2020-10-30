@@ -20,6 +20,7 @@ const Form = ({inputText,setInputTextHandler,todos,filter,setTodosHandler,setFil
         setFilter(e.target.value);
     }
     
+
     return (
         <form>
             <input onChange={handleChange} type="text"  className="form-control" value={inputText}/>

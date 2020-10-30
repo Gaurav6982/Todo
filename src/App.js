@@ -9,9 +9,12 @@ function App() {
   const [todos, setTodosHandler] = useState([]);
   const [filter, setFilter] = useState("all");
   const [filteredTodo, setFilteredTodo] = useState([]);
-
+  useEffect(()=>{
+    getFromLocal();
+  },[]);
   useEffect(()=>{
     filterTodoHandler();
+    saveToLocal();
   },[todos,filter]);
 
   const filterTodoHandler=()=>{
@@ -21,7 +24,19 @@ function App() {
         case 'uncompleted': setFilteredTodo(todos.filter(el=>el.completed===false)); break;
         default: setFilteredTodo(todos); break;
     }
-}
+  }
+  const saveToLocal=()=>localStorage.setItem('todos',JSON.stringify(todos));
+  const getFromLocal=()=>{
+    if(localStorage.getItem('todos')===null)
+    {
+      localStorage.setItem('todos',JSON.stringify([]));
+    }
+    else
+    {
+      let localSave=JSON.parse(localStorage.getItem('todos'));
+      setTodosHandler(localSave);
+    }
+  }
   return (
     <div className="App">
       <header className="App-header">
